@@ -28,7 +28,7 @@ func main() {
 
 	http.Handle("/", new(staticHandler.Handler))
 	http.Handle("/static", http.FileServer(http.Dir("wwwroot/static")))
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(":8080", nil)
 }
 
 func checkMode() {
