@@ -12,10 +12,11 @@ var (
 	errorLogger *log.Logger
 	testLogger  *log.Logger
 	loggingmode jmueConst.Mode
+	isInit      bool
 )
 
 func init() {
-
+	isInit = false
 }
 
 //InitLogger : logging file and stdout
@@ -30,11 +31,23 @@ func InitLogger(fpLog *os.File, mode jmueConst.Mode) {
 	errorLogger.SetOutput(multiWriter)
 	testLogger.SetOutput(os.Stdout)
 
+	isInit = true
 	Debug("start server - initLogger complete")
+}
+
+func checkInitLogger() bool {
+	if isInit == false {
+		log.Println("need InitLogger(fpLog *os.File, mode jmueConst.Mode)")
+		return false
+	}
+	return true
 }
 
 //Debug : print debug text console and file
 func Debug(text string) {
+	if checkInitLogger() == false {
+		return
+	}
 	if loggingmode != jmueConst.SERVICE {
 		debugLogger.Printf(text)
 	}
@@ -42,11 +55,17 @@ func Debug(text string) {
 
 //Error : print error text console and file
 func Error(text string) {
+	if checkInitLogger() == false {
+		return
+	}
 	errorLogger.Printf(text)
 }
 
 //Test : print error text just console
 func Test(text string) {
+	if checkInitLogger() == false {
+		return
+	}
 	if loggingmode == jmueConst.TEST {
 		testLogger.Printf(text)
 	}
