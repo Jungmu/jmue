@@ -7,7 +7,6 @@ import (
 	"jmue/staticHandler"
 	"net/http"
 	"os"
-	"os/exec"
 	"time"
 )
 
@@ -17,7 +16,6 @@ var (
 
 func main() {
 	checkMode()
-	sassBuild("sass/style.scss", "wwwroot/static/css/style.css")
 
 	now := time.Now()
 	logFilePath := fmt.Sprintf("wwwroot/log/%d-%02d.log", now.Year(), now.Month())
@@ -41,8 +39,4 @@ func checkMode() {
 	} else if os.Args[1] == "test" || os.Args[1] == "t" {
 		mode = jmueConst.TEST
 	}
-}
-
-func sassBuild(sassPath string, cssPath string) {
-	out, err := exec.Command("sh", "-c", cmd).Output()
 }

@@ -6,24 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
     <title>Golang</title>
 </head>
 
-<body>
-    <nav id="topNav">
-        <ul>
-            <li><a href="#">About me</a></li>
+<body>    
+    <nav id="nav">
+        <div id="nav-area">
+            <a id="logo" href="/">&#x003BC;</a>
+            <i v-on:click="show = !show" id="nav-menu" class="fa fa-bars"></i>        
+        </div>
+        <ul v-if="show">
             <li><a href="#">work</a></li>
             <li><a href="#">talk</a></li>
-            <li><a href="#">contect</a></li>
+            <li><a href="#">contect</a></li>                
         </ul>
     </nav>
-    <h1>
-        <div id="app">
-            <p>{{ message }}</p>
-        </div>          
-    </h1>
+    <div id="contents">
+        <h1>
+            <div id="app">
+                <p>{{ message }}</p>
+            </div>          
+        </h1>
+        <button class="snip">Submit</button>
+        <button class="simple">Hover me !</button>
+    </div>
+    <div id="side">side</div>
+    <div id="footer">footer</div>
+    
 </body>
 <script src="static/js/app.js"></script>
 

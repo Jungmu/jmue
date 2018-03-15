@@ -1,4 +1,59 @@
-$color: aquamarine;
-body {
-    background-color: $color;
+@import 'mixin';
+@import 'button';
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html,body {
+    background-color: $color-white;
+    @include pad-mar-0();
+}
+
+a {
+    color: inherit;
+    text-decoration: none !important;
+}
+
+nav {
+    transition:all 1s;
+    background-color: $color-black;
+    @include pad-mar-0();
+    @include fontStyle(20px,$color-white);
+    ul {
+        @include pad-mar-0();
+        list-style: none;
+        float: right;
+    }
+    li {
+        display:inline; 
+        margin: 0 10px;
+    }      
+    #nav-area {
+        padding: 10px;
+        display: inline;
+    }
+}
+
+#logo {
+    margin: 0 10px;
+    vertical-align: top;
+}
+#nav-menu {
+    float: right;
+    display: none;
+    margin-right: 10px;
+}
+
+@media screen and (max-width:1080px) {
+    #nav-menu {
+        display: inherit;
+    }
+    nav {
+        ul{
+            display: block;
+        }
+    }       
 }
