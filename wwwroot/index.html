@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
@@ -15,18 +13,24 @@
 </head>
 
 <body>    
-    <nav id="nav">
-        <div id="nav-area">
-            <a id="logo" href="/">&#x003BC;</a>
-            <i v-on:click="show = !show" id="nav-menu" class="fa fa-bars"></i>        
+    <nav role="navigation">
+        <div id="menuToggle">
+          
+            <input type="checkbox" />
+                    
+            <span></span>
+            <span></span>
+            <span></span>
+                        
+            <ul id="menu">
+                <a href="#"><li>Home</li></a>
+                <a href="#"><li>About</li></a>
+                <a href="#"><li>Info</li></a>
+                <a href="#"><li>Contact</li></a>
+            </ul>
         </div>
-        <ul v-if="show">
-            <li><a href="#">work</a></li>
-            <li><a href="#">talk</a></li>
-            <li><a href="#">contect</a></li>                
-        </ul>
     </nav>
-    <div id="contents">
+    <div id="container">
         <h1>
             <div id="app">
                 <p>{{ message }}</p>
