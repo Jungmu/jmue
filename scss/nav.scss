@@ -1,17 +1,7 @@
-nav {
-    background-image: url("../img/header_img.jpg");
-    height: 950px;
-    body
-    {
-        margin: 0;
-        padding: 0;
-        
-        /* make it look decent enough */
-        background: #232323;
-        color: #cdcdcd;
-        font-family: "Avenir Next", "Avenir", sans-serif;
-    }
-    
+nav {        
+    color: #cdcdcd;
+    font-family: "Avenir Next", "Avenir", sans-serif;  
+
     a
     {
         text-decoration: none;
@@ -28,7 +18,7 @@ nav {
     #menuToggle
     {
         display: block;
-        position: relative;
+        position: fixed;
         top: 30px;
         left: 30px;
         
@@ -106,6 +96,7 @@ nav {
     #menu
     {
         position: absolute;
+        height: 150vh;
         width: 300px;
         margin: -100px 0 0 -50px;
         padding: 50px;

@@ -17,6 +17,27 @@ body
     font-family: "Avenir Next", "Avenir", sans-serif;
 }
 
-#container {
+#header {
+    background-image: url("../img/header_img.jpg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+    height:100vh;
+}
+
+.container {
+    margin: auto;
     margin-top: 50px;
+    width:1080px;
+}
+
+#footer {
+    background-color: #232323;
+    color:#dcdcdc;    
+    text-align: right;
+
+    p {
+        margin: 0;
+        padding: 10px;
+    }
 }
