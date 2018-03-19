@@ -1,1 +1,0 @@
-ssh -i jmue.pem ubuntu@133.186.241.219
