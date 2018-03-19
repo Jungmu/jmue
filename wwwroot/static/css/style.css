@@ -21,18 +21,18 @@ button.simple:after { right: inherit; top: inherit; left: 0; bottom: 0; }
 
 button.simple:hover:before, button.simple:hover:after { width: 100%; transition: 800ms ease all; }
 
-nav { color: #cdcdcd; font-family: "Avenir Next", "Avenir", sans-serif; }
+nav { font-family: "Avenir Next", "Avenir", sans-serif; }
 nav a { text-decoration: none; color: #232323; transition: color 0.3s ease; }
 nav a:hover { color: tomato; }
 nav #menuToggle { display: block; position: fixed; top: 30px; left: 30px; z-index: 1; -webkit-user-select: none; user-select: none; }
 nav #menuToggle input { display: block; width: 40px; height: 32px; position: absolute; top: -7px; left: -5px; cursor: pointer; opacity: 0; z-index: 2; -webkit-touch-callout: none; }
-nav #menuToggle span { display: block; width: 33px; height: 4px; margin-bottom: 5px; position: relative; background: #cdcdcd; border-radius: 3px; z-index: 1; transform-origin: 4px 0px; transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; }
+nav #menuToggle span { display: block; width: 33px; height: 4px; margin-bottom: 5px; position: relative; background: #232323; border-radius: 3px; z-index: 1; transform-origin: 4px 0px; transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; }
 nav #menuToggle span:first-child { transform-origin: 0% 0%; }
 nav #menuToggle span:nth-last-child(2) { transform-origin: 0% 100%; }
 nav #menuToggle input:checked ~ span { opacity: 1; transform: rotate(45deg) translate(-2px, -1px); background: #232323; }
 nav #menuToggle input:checked ~ span:nth-last-child(3) { opacity: 0; transform: rotate(0deg) scale(0.2, 0.2); }
 nav #menuToggle input:checked ~ span:nth-last-child(2) { transform: rotate(-45deg) translate(0, -1px); }
-nav #menu { position: absolute; height: 150vh; width: 300px; margin: -100px 0 0 -50px; padding: 50px; padding-top: 125px; background: #ededed; list-style-type: none; -webkit-font-smoothing: antialiased; transform-origin: 0% 0%; transform: translate(-100%, 0); transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); }
+nav #menu { position: absolute; height: 150vh; width: 300px; margin: -100px 0 0 -50px; padding: 50px; padding-top: 125px; background: rgba(200, 200, 200, 0.85); list-style-type: none; -webkit-font-smoothing: antialiased; transform-origin: 0% 0%; transform: translate(-100%, 0); transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); }
 nav #menu li { padding: 10px 0; font-size: 22px; }
 nav #menuToggle input:checked ~ ul { transform: none; }
 
@@ -40,11 +40,13 @@ nav #menuToggle input:checked ~ ul { transform: none; }
 
 body { margin: 0; padding: 0; background-color: #fbfbfb; color: #232323; font-family: "Avenir Next", "Avenir", sans-serif; }
 
-#header { background-image: url("../img/header_img.jpg"); background-repeat: no-repeat; background-position-x: center; background-size: cover; height: 100vh; }
+#header { background-image: url("../img/header_img.jpg"); background-repeat: no-repeat; background-position: center bottom; background-size: cover; height: 50vh; }
 
 .container { margin: auto; margin-top: 50px; width: 1080px; }
 
 #footer { background-color: #232323; color: #dcdcdc; text-align: right; }
 #footer p { margin: 0; padding: 10px; }
+
+@media only screen and (max-width: 1080px) { .container { width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */

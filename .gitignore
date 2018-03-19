@@ -21,3 +21,6 @@ debug
 
 # key file
 jmue.pem
+
+# cache
+.sass-cache/*

@@ -1,5 +1,4 @@
 nav {        
-    color: #cdcdcd;
     font-family: "Avenir Next", "Avenir", sans-serif;  
 
     a
@@ -53,7 +52,7 @@ nav {
         margin-bottom: 5px;
         position: relative;
         
-        background: #cdcdcd;
+        background: #232323;
         border-radius: 3px;
         
         z-index: 1;
@@ -102,7 +101,7 @@ nav {
         padding: 50px;
         padding-top: 125px;
         
-        background: #ededed;
+        background: rgba(200,200,200,0.85);
         list-style-type: none;
         -webkit-font-smoothing: antialiased;
         
