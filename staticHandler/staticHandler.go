@@ -2,9 +2,10 @@ package staticHandler
 
 import (
 	"io/ioutil"
-	"jmue/logger"
 	"net/http"
 	"path/filepath"
+
+	"github.com/Jungmu/jmue/logger"
 )
 
 //Handler : http.Handler wrapping

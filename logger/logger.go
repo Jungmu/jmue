@@ -2,9 +2,10 @@ package logger
 
 import (
 	"io"
-	"jmue/jmueConst"
 	"log"
 	"os"
+
+	"github.com/Jungmu/jmue/jmueConst"
 )
 
 var (

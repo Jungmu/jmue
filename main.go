@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"jmue/jmueConst"
-	"jmue/logger"
-	"jmue/staticHandler"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/Jungmu/jmue/jmueConst"
+	"github.com/Jungmu/jmue/logger"
+	"github.com/Jungmu/jmue/staticHandler"
 )
 
 var (
