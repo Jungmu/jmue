@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/Jungmu/jmue/jmueConst"
+	"github.com/Jungmu/jmue/whereami"
 )
 
 var (
@@ -25,9 +26,9 @@ func InitLogger(fpLog *os.File, mode jmueConst.Mode) {
 	loggingmode = mode
 	// 파일과 화면에 같이 출력하기 위해 MultiWriter 생성
 	multiWriter := io.MultiWriter(fpLog, os.Stdout)
-	debugLogger = log.New(os.Stdout, "DEBUG: ", log.LstdFlags)
-	errorLogger = log.New(os.Stdout, "ERROR: ", log.LstdFlags)
-	testLogger = log.New(os.Stdout, "TEST: ", log.LstdFlags)
+	debugLogger = log.New(os.Stdout, "DEBUG: "+whereami.WhereAmI(), log.LstdFlags)
+	errorLogger = log.New(os.Stdout, "ERROR: "+whereami.WhereAmIforError(), log.LstdFlags)
+	testLogger = log.New(os.Stdout, "TEST: "+whereami.WhereAmI(), log.LstdFlags)
 	debugLogger.SetOutput(multiWriter)
 	errorLogger.SetOutput(multiWriter)
 	testLogger.SetOutput(os.Stdout)

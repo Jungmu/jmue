@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"path/filepath"
+	"strings"
 
 	"github.com/Jungmu/jmue/logger"
 )
@@ -17,13 +18,8 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	logger.Debug("Get Request - URL : " + req.Host + req.URL.Path)
 	logger.Debug("Get Request - User Info : " + req.UserAgent())
 
-	localPath := ""
+	localPath := route(req.URL.Path)
 
-	if req.URL.Path == "/" {
-		localPath = "wwwroot/index.html"
-	} else {
-		localPath = "wwwroot" + req.URL.Path
-	}
 	content, err := ioutil.ReadFile(localPath)
 	if err != nil {
 		w.WriteHeader(404)
@@ -34,6 +30,35 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	contentType := getContentType(localPath)
 	w.Header().Add("Content-Type", contentType)
 	w.Write(content)
+}
+
+func route(path string) string {
+	var routingPath string
+	if path == "/" {
+		routingPath = "wwwroot/index.html"
+	} else {
+		fileType := strings.Split(path, ".")
+
+		if isStaticFile(fileType[len(fileType)-1]) {
+			routingPath = "wwwroot" + path
+		} else {
+			routingPath = "wwwroot" + path + ".html"
+		}
+	}
+
+	return routingPath
+}
+
+func isStaticFile(fileType string) bool {
+	staticFileList := []string{"css", "js", "html"}
+	staticFileList = append(staticFileList, "jpg", "jpeg", "png", "gif")
+
+	for _, str := range staticFileList {
+		if strings.EqualFold(fileType, str) {
+			return true
+		}
+	}
+	return false
 }
 
 func getContentType(localPath string) string {
