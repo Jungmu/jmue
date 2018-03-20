@@ -20,7 +20,7 @@ wwwroot/log/*.log
 debug
 
 # key file
-jmue.pem
+credentials.json
 
 # cache
 .sass-cache/*

@@ -7,11 +7,11 @@
     <meta name="google-signin-client_id" content="765155504252-mnp81pgef2qrlvc8j9g2job71lptc806.apps.googleusercontent.com">
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>    
 
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
-    <title>Jungmu</title>
+    <title>Golang</title>
 </head>
 
 <body>
@@ -41,12 +41,14 @@
                 <p>{{ message }}</p>
             </div>          
         </h1>
-        <button class="snip">Submit</button>
+        <a href="/login"><button class="snip">login</button></a>
         <button class="simple">Hover me !</button>
+        <a href="#" onclick="signOut();">Sign out</a>
+
     </div>
     <div id="footer">
         <div class="container">
-            <p>© 2017 - 2018 Jung jong seon All rights reserved.</p><p> Email : whdrjs0@gmail.com </p>
+            <p>© 2017 - 2018 Jung jong seon All rights reserved. - Email : whdrjs0@gmail.com </p>
         </div>
     </div>    
 </body>
