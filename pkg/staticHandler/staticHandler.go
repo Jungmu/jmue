@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Jungmu/jmue/logger"
+	"github.com/Jungmu/jmue/pkg/logger"
 )
 
 //Handler : http.Handler wrapping

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,9 +8,9 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/Jungmu/jmue/jmueConst"
-	"github.com/Jungmu/jmue/logger"
-	"github.com/Jungmu/jmue/staticHandler"
+	"github.com/Jungmu/jmue/pkg/const"
+	"github.com/Jungmu/jmue/pkg/logger"
+	"github.com/Jungmu/jmue/pkg/staticHandler"
 )
 
 var (
@@ -32,20 +31,25 @@ func main() {
 
 	http.Handle("/", new(staticHandler.Handler))
 	http.HandleFunc("/gitPush", gitPushHandler)
+	http.HandleFunc("/restart", serverRestart)
 	http.Handle("/static", http.FileServer(http.Dir("wwwroot/static")))
 
 	http.ListenAndServe(":80", nil)
 }
 
 func gitPushHandler(w http.ResponseWriter, req *http.Request) {
-	execCommand()
+	execCommand("sh", "gitPush.sh")
 	w.Write([]byte("OK"))
 }
 
-func execCommand() {
-	cmd := exec.Command("sh", "gitPull.sh")
-	var out bytes.Buffer
-	cmd.Stdout = &out
+func serverRestart(w http.ResponseWriter, req *http.Request) {
+	execCommand("sh", "gitPush.sh")
+	w.Write([]byte("please wait, restart server..."))
+}
+
+func execCommand(command string, option string) {
+	cmd := exec.Command(command, option)
+	cmd.Stdout = os.Stdout
 	err := cmd.Run()
 	if err != nil {
 		log.Fatal(err)

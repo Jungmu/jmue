@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/Jungmu/jmue/jmueConst"
-	"github.com/Jungmu/jmue/whereami"
+	"github.com/Jungmu/jmue/pkg/const"
+	"github.com/Jungmu/jmue/pkg/whereami"
 )
 
 var (
