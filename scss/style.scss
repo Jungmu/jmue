@@ -25,6 +25,24 @@ body
     height:50vh;
 }
 
+#google {
+    float: right;    
+    #login > div {
+        margin: 20px;
+    }
+    #logout {
+        display: none;
+    }
+}
+
+#title h1{
+    @include text-outline(10px , #232323);
+    @include fontStyle(50px,#dcdcdc);
+    text-align: center;
+    margin: 0;
+    padding-top: 25vh;
+}
+
 .container {
     margin: auto;
     margin-top: 50px;

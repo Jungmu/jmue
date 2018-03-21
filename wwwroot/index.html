@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="765155504252-mnp81pgef2qrlvc8j9g2job71lptc806.apps.googleusercontent.com">
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -32,7 +33,19 @@
                     <a href="#"><li>Contact</li></a>
                 </ul>
             </div>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div id="google">
+                <div id="login" class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div id="logout">
+                    <a href="#" onclick="signOut();">
+                        <button class="snip">Sign out</button>
+                    </a>
+                </div>
+            </div>
+            <div id="title">
+                <h1>
+                    Hello, Welcome My Page
+                </h1>
+            </div>   
         </nav>
     </div>    
     <div class="container">
@@ -41,8 +54,6 @@
                 <p>{{ message }}</p>
             </div>          
         </h1>
-        <button class="snip">Submit</button>
-        <button class="simple">Hover me !</button>
     </div>
     <div id="footer">
         <div class="container">
@@ -51,19 +62,5 @@
     </div>    
 </body>
 <script src="static/js/app.js"></script>
-<script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-  </script>
+<script src="static/js/login.js"></script>
 </html>

@@ -15,3 +15,9 @@
     margin: 0;
     padding: 0;
 }
+
+@mixin text-outline($size: 2px, $color: #fff) {
+    text-shadow: 0 0 $size $color;
+	-moz-text-shadow: 0 0 $size $color;
+	-webkit-text-shadow: 0 0 $size $color;
+}

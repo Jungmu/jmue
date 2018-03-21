@@ -18,7 +18,7 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	logger.Debug("Get Request - URL : " + req.Host + req.URL.Path)
 	logger.Debug("Get Request - User Info : " + req.UserAgent())
 
-	localPath := route(req.URL.Path)
+	localPath := route(req.URL.Path, w, req)
 
 	content, err := ioutil.ReadFile(localPath)
 	if err != nil {
@@ -32,7 +32,7 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	w.Write(content)
 }
 
-func route(path string) string {
+func route(path string, w http.ResponseWriter, req *http.Request) string {
 	var routingPath string
 	if path == "/" {
 		routingPath = "wwwroot/index.html"
