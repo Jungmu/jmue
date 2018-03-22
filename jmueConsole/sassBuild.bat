@@ -1,0 +1,1 @@
+scss --style compact ../scss/style.scss ../wwwroot/static/css/style.css
