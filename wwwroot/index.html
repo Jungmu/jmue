@@ -46,7 +46,7 @@
             </div>
             <div id="title">
                 <h1>
-                    Hello, Welcome My Page
+                    Hello, Welcome {{ .Title }}
                 </h1>
             </div>   
         </nav>
@@ -54,7 +54,7 @@
     <div id="contents" class="container">
         <h1>
             <div id="app">
-                <p>{{ message }}</p>
+                <p>{! message }</p>
             </div>          
         </h1>
     </div>

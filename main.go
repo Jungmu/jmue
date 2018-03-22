@@ -15,6 +15,17 @@ var (
 	mode jmueConst.Mode
 )
 
+// Home : for /
+type Home struct {
+	Title string
+}
+
+func newHome(title string) *Home {
+	home := Home{}
+	home.Title = title
+	return &home
+}
+
 func main() {
 	checkMode()
 
@@ -27,7 +38,8 @@ func main() {
 	defer fpLog.Close()
 	logger.InitLogger(fpLog, mode)
 
-	http.Handle("/", new(staticHandler.Handler))
+	http.Handle("/", staticHandler.New(newHome("Home")))
+	http.Handle("/page", staticHandler.New(newHome("Page")))
 	http.Handle("/static", http.FileServer(http.Dir("wwwroot/static")))
 
 	http.ListenAndServe(":80", nil)

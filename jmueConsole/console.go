@@ -34,6 +34,7 @@ func serverRestart(w http.ResponseWriter, req *http.Request) {
 func gitPushHandler(w http.ResponseWriter, req *http.Request) {
 	pushCount++
 	execCommand("gitPull.bat")
+	execCommand("sassBuild.bat")
 	w.Header().Add("Content-Type", "text/html")
 	w.Write([]byte("<h1>git pull complete</h1><br>"))
 	http.Redirect(w, req, "http://jmue.xyz", 301)

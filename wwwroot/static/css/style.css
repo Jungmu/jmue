@@ -57,7 +57,6 @@ body { margin: 0; padding: 0; background-color: #fbfbfb; color: #232323; font-fa
 #footer { background-color: #232323; color: #dcdcdc; text-align: right; }
 #footer p { margin: 0; padding: 10px; }
 
-@media only screen and (min-width: 1080px) { #manage { display: block; } }
 @media only screen and (max-width: 1080px) { .container { width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */

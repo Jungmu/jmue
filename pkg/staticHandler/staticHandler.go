@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"strings"
+	"text/template"
 
 	"github.com/Jungmu/jmue/pkg/logger"
 )
@@ -12,6 +13,14 @@ import (
 //Handler : http.Handler wrapping
 type Handler struct {
 	http.Handler
+	Data interface{}
+}
+
+//New : constructor
+func New(data interface{}) *Handler {
+	h := Handler{}
+	h.Data = data
+	return &h
 }
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -29,7 +38,27 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	contentType := getContentType(localPath)
 	w.Header().Add("Content-Type", contentType)
-	w.Write(content)
+
+	if contentType == "text/html" {
+		excuteTemplate(w, content, h.Data)
+	} else {
+		w.Write(content)
+	}
+}
+
+func excuteTemplate(w http.ResponseWriter, content []byte, data interface{}) {
+	t := template.New("Person template")
+	t, err := t.Parse(string(content))
+	checkError(err)
+
+	err = t.Execute(w, data)
+	checkError(err)
+}
+
+func checkError(err error) {
+	if err != nil {
+		logger.Error(err.Error())
+	}
 }
 
 func route(path string, w http.ResponseWriter, req *http.Request) string {
