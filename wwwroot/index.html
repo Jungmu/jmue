@@ -36,10 +36,13 @@
             <div id="google">
                 <div id="login" class="g-signin2" data-onsuccess="onSignIn"></div>
                 <div id="logout">
-                    <a href="#" onclick="signOut();">
-                        <button class="snip">Sign out</button>
-                    </a>
+                    <a href="#" onclick="signOut();"><button class="snip">Sign out</button></a>
                 </div>
+                
+            </div>
+            <div id="manage">
+                <a href="http://jmue.xyz:3000/gitPush"><button class="snip">Push</button></a>
+                <a href="http://jmue.xyz:3000/restart"><button class="snip">Restart</button></a>
             </div>
             <div id="title">
                 <h1>
@@ -48,7 +51,7 @@
             </div>   
         </nav>
     </div>    
-    <div class="container">
+    <div id="contents" class="container">
         <h1>
             <div id="app">
                 <p>{{ message }}</p>

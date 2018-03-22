@@ -13,6 +13,7 @@ function onSignIn(googleUser) {
 
     document.getElementById("login").style.display = "none";
     document.getElementById("logout").style.display = "block";
+    document.getElementById("manage").style.display = "block";
 
     if(profile.getEmail() != "whdrjs0@gmail.com")
     {
@@ -29,4 +30,5 @@ function signOut() {
 
     document.getElementById("login").style.display = "block";
     document.getElementById("logout").style.display = "none";
+    document.getElementById("manage").style.display = "none";
   }

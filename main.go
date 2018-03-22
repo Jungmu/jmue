@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
-	"os/exec"
 	"time"
 
 	"github.com/Jungmu/jmue/pkg/const"
@@ -21,7 +19,7 @@ func main() {
 	checkMode()
 
 	now := time.Now()
-	logFilePath := fmt.Sprintf("wwwroot/log/%d-%02d.log", now.Year(), now.Month())
+	logFilePath := fmt.Sprintf("wwwroot/log/%d-%02d-%02d_%02d.log", now.Year(), now.Month(), now.Day(), now.Hour())
 	fpLog, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		panic(err)
@@ -30,30 +28,9 @@ func main() {
 	logger.InitLogger(fpLog, mode)
 
 	http.Handle("/", new(staticHandler.Handler))
-	http.HandleFunc("/gitPush", gitPushHandler)
-	http.HandleFunc("/restart", serverRestart)
 	http.Handle("/static", http.FileServer(http.Dir("wwwroot/static")))
 
 	http.ListenAndServe(":80", nil)
-}
-
-func gitPushHandler(w http.ResponseWriter, req *http.Request) {
-	execCommand("sh", "gitPush.sh")
-	w.Write([]byte("OK"))
-}
-
-func serverRestart(w http.ResponseWriter, req *http.Request) {
-	execCommand("sh", "gitPush.sh")
-	w.Write([]byte("please wait, restart server..."))
-}
-
-func execCommand(command string, option string) {
-	cmd := exec.Command(command, option)
-	cmd.Stdout = os.Stdout
-	err := cmd.Run()
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func checkMode() {
