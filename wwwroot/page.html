@@ -1,72 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="google-signin-client_id" content="765155504252-mnp81pgef2qrlvc8j9g2job71lptc806.apps.googleusercontent.com">
-
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>    
-
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
-
-    <title>Golang</title>
-</head>
-
-<body>
-    <div id="header">
-        <nav role="navigation">
-            <div id="menuToggle">
-                
-                <input type="checkbox" />
-                        
-                <span></span>
-                <span></span>
-                <span></span>
-                            
-                <ul id="menu">
-                    <a href="#"><li>Home</li></a>
-                    <a href="#"><li>About</li></a>
-                    <a href="#"><li>Info</li></a>
-                    <a href="#"><li>Contact</li></a>
-                </ul>
-            </div>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <h1> {{.Title}} </h1>
-        </nav>
-    </div>    
-    <div class="container">
-        <h1>
-            <div id="app">
-                <p>{! message }</p>
-            </div>          
-        </h1>
-        <a href="/login"><button class="snip">login</button></a>
-        <button class="simple">Hover me !</button>
-        <a href="#" onclick="signOut();">Sign out</a>
-
-    </div>
-    <div id="footer">
-        <div class="container">
-            <p>© 2017 - 2018 Jung jong seon All rights reserved. - Email : whdrjs0@gmail.com </p>
-        </div>
-    </div>    
-</body>
-<script src="static/js/app.js"></script>
-<script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-  </script>
-</html>
+<div id="contents" class="container">
+    <h1>
+        <div id="app">
+            <p>{! message }</p>
+            <p>Page!!!!!!!!!!</p>
+        </div>          
+    </h1>
+</div>

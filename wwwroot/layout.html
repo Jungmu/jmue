@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="765155504252-mnp81pgef2qrlvc8j9g2job71lptc806.apps.googleusercontent.com">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <div id="header">
+        <nav role="navigation">
+            <div id="menuToggle">
+                
+                <input type="checkbox" />
+                        
+                <span></span>
+                <span></span>
+                <span></span>
+                            
+                <ul id="menu">
+                    <a href="#"><li>Home</li></a>
+                    <a href="#"><li>About</li></a>
+                    <a href="#"><li>Info</li></a>
+                    <a href="#"><li>Contact</li></a>
+                </ul>
+            </div>
+            <div id="google">
+                <div id="login" class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div id="logout">
+                    <a href="#" onclick="signOut();"><button class="snip">Sign out</button></a>
+                </div>
+                
+            </div>
+            <div id="manage">
+                <a href="http://jmue.xyz:3000/gitPush"><button class="snip">Push</button></a>
+                <a href="http://jmue.xyz:3000/restart"><button class="snip">Restart</button></a>
+            </div>
+            <div id="title">
+                <h1>
+                    Hello, Welcome {{ .Title }}
+                </h1>
+            </div>   
+        </nav>
+    </div>    
+    {*content*}
+    <div id="footer">
+        <div class="container">
+            <p>© 2017 - 2018 Jung jong seon All rights reserved.</p><p> Email : whdrjs0@gmail.com </p>
+        </div>
+    </div>    
+</body>
+<script src="static/js/app.js"></script>
+<script src="static/js/login.js"></script>
+</html>

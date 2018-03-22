@@ -1,8 +1,10 @@
 package staticHandler
 
 import (
+	"bytes"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -40,10 +42,20 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	w.Header().Add("Content-Type", contentType)
 
 	if contentType == "text/html" {
-		excuteTemplate(w, content, h.Data)
+		excuteTemplate(w, wrapLayout(content), h.Data)
 	} else {
 		w.Write(content)
 	}
+}
+
+func wrapLayout(content []byte) []byte {
+	layout, err := ioutil.ReadFile("wwwroot/layout.html")
+	if checkError(err) {
+		logger.Error("wrapLayoutFail not found layout.html")
+		os.Exit(1)
+	}
+
+	return bytes.Replace(layout, []byte("{*content*}"), content, 1)
 }
 
 func excuteTemplate(w http.ResponseWriter, content []byte, data interface{}) {
@@ -55,10 +67,12 @@ func excuteTemplate(w http.ResponseWriter, content []byte, data interface{}) {
 	checkError(err)
 }
 
-func checkError(err error) {
+func checkError(err error) bool {
 	if err != nil {
 		logger.Error(err.Error())
+		return true
 	}
+	return false
 }
 
 func route(path string, w http.ResponseWriter, req *http.Request) string {
