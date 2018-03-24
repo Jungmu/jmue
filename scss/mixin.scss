@@ -1,17 +1,17 @@
-@import 'const';
-
 @mixin fontStyle($size, $color) {
     color: $color;
     font-size: $size;
 }
 
 @mixin rounded ($radius: 10px) {
-    border-radius : $radius;
-    -moz-border-radius : $radius;
     -webkit-border-radius : $radius;
+    -moz-border-radius : $radius;
+    -ms-border-radius: $radius;
+    border-radius : $radius;
+    
 }
 
-@mixin pad-mar-0 () {
+@mixin pad-mar-0{
     margin: 0;
     padding: 0;
 }

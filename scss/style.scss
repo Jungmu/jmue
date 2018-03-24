@@ -1,62 +1,31 @@
 @import 'mixin';
 @import 'button';
 @import 'nav';
+@import 'modal';
 
 * {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body
 {
-    @include pad-mar-0();
-  
-    background-color: $color-white;
+    @include pad-mar-0;
+    background-color: #dcdcdc;
     color: #232323;
     font-family: "Avenir Next", "Avenir", sans-serif;
 }
 
-#header {
-    background-image: url("../img/header_img.jpg");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: cover;
-    height:50vh;
-}
-
-#google {
-    float: right;    
-    #login > div {
-        margin: 20px;
-    }
-    #logout {
-        display: none;
-    }
-}
-
-#manage {
-    margin-left: 100px;
-    float: left;
-    display: none;
-}
-
-#title h1{
-    @include text-outline(10px , #232323);
-    @include fontStyle(6.6vh,#dcdcdc);
-    text-align: center;
-    margin: 0;
-    padding-top: 20vh;
-}
-
 .container {
-    margin: auto;
-    margin-top: 50px;
+    margin: 0 auto;
     width:1080px;
 }
 
 #contents {
-    min-height: 50vh;
+    min-height: 100vh;
+    text-align: center;
 }
 
 #footer {
@@ -72,6 +41,6 @@ body
 
 @media only screen and (max-width: 1080px) {
     .container {
-        width: 100%;
+        width: 90%;
     }
 }

@@ -15,22 +15,11 @@ var (
 	mode jmueConst.Mode
 )
 
-// Home : for /
-type Home struct {
-	Title string
-}
-
-func newHome(title string) *Home {
-	home := Home{}
-	home.Title = title
-	return &home
-}
-
 func main() {
 	checkMode()
 
 	now := time.Now()
-	logFilePath := fmt.Sprintf("wwwroot/log/%d-%02d-%02d_%02d.log", now.Year(), now.Month(), now.Day(), now.Hour())
+	logFilePath := fmt.Sprintf("wwwroot/log/%d-%02d-%02d.log", now.Year(), now.Month(), now.Day())
 	fpLog, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		panic(err)
@@ -38,8 +27,7 @@ func main() {
 	defer fpLog.Close()
 	logger.InitLogger(fpLog, mode)
 
-	http.Handle("/", staticHandler.New(newHome("Home")))
-	http.Handle("/page", staticHandler.New(newHome("Page")))
+	http.Handle("/", new(staticHandler.Handler))
 	http.Handle("/static", http.FileServer(http.Dir("wwwroot/static")))
 
 	http.ListenAndServe(":80", nil)

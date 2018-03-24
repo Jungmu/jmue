@@ -1,7 +1,71 @@
-<div id="contents" class="container">
-    <h1>
-        <div id="app">
-            <p>{! message }</p>
-        </div>          
-    </h1>
-</div>
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="765155504252-mnp81pgef2qrlvc8j9g2job71lptc806.apps.googleusercontent.com">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+    <title>jmue</title>
+</head>
+<!--<div id="google">
+                <div id="login" class="g-signin2" data-onsuccess="onSignIn"></div> 
+            <div id="logout">
+                <a href="#" onclick="signOut();"><button class="snip">Sign out</button></a>
+            </div>
+        </div>
+        <div id="manage">
+            <a href="http://jmue.xyz:3000/gitPush"><button class="snip">Push</button></a>
+            <a href="http://jmue.xyz:3000/restart"><button class="snip">Restart</button></a>
+        </div>-->
+<body onload="onload()">
+    <nav class="dark-theme" role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                <li>Home</li>
+                <li>About</li>
+                <li>Info</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+        <div id="nav-login">
+            <button class="snip" onclick="openLoginModal()">admin</button>
+        </div>
+    </nav>
+    <div id="contents" class="container">
+        <div id="IE" v-if="show">
+            <h1><p>{{ message }}</p></h1>
+        </div>
+        <div id="index">
+            <p>{{ message }}</p>
+        </div>       
+    </div>
+    <div id="footer">
+        <div class="container">
+            <p>© 2017 - 2018 Jung jong seon All rights reserved.</p><p> Email : whdrjs0@gmail.com </p>
+        </div>
+    </div>
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal">
+            <span class="modal-close" onclick="closeLoginModal()">&times;</span>
+            <div class="modal-content">
+                <h1>Login for Admin</h1>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="static/js/app.js"></script>
+<script src="static/js/login.js"></script>
+<script src="static/js/modal.js"></script>
+</html>

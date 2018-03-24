@@ -1,15 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
-button.snip { background-color: rgba(200, 200, 200, 0.85); border: none; color: #ffffff; cursor: pointer; display: inline-block; font-family: 'BenchNine', Arial, sans-serif; font-size: 1em; font-size: 22px; line-height: 1em; margin: 15px 20px; outline: none; padding: 12px 40px 10px; position: relative; text-transform: uppercase; font-weight: 700; }
-
-button.snip:before, button.snip:after { border-color: transparent; -webkit-transition: all 0.25s; transition: all 0.25s; border-style: solid; border-width: 0; content: ""; height: 24px; position: absolute; width: 24px; }
-
-button.snip:before { border-color: rgba(200, 200, 200, 0.85); border-right-width: 2px; border-top-width: 2px; right: -5px; top: -5px; }
-
-button.snip:after { border-bottom-width: 2px; border-color: rgba(200, 200, 200, 0.85); border-left-width: 2px; bottom: -5px; left: -5px; }
-
-button.snip:hover { background-color: rgba(200, 200, 200, 0.85); }
-
+button.snip { background-color: #c8c8c8; border: none; color: #ffffff; cursor: pointer; display: inline-block; font-family: 'BenchNine', Arial, sans-serif; font-size: inherit; line-height: 1em; margin: 0.75em 1em; outline: none; padding: 0.3em 1em 0.25em; position: relative; text-transform: uppercase; font-weight: 700; }
+button.snip:before, button.snip:after { border-color: transparent; -webkit-transition: all 0.25s; transition: all 0.25s; border-style: solid; border-width: 0; content: ""; height: 1.2em; position: absolute; width: 1.2em; }
+button.snip:before { border-color: #c8c8c8; border-right-width: 0.1em; border-top-width: 0.1em; right: -0.25em; top: -0.25em; }
+button.snip:after { border-bottom-width: 0.1em; border-color: #c8c8c8; border-left-width: 0.1em; bottom: -0.25em; left: -0.25em; }
+button.snip:hover { background-color: #c8c8c8; }
 button.snip:hover:before, button.snip:hover:after { height: 100%; width: 100%; }
+button.snip:active { background-color: #666; }
 
 button.simple { background: #1AAB8A; color: #fff; border: none; position: relative; height: 60px; font-size: 1.6em; padding: 0 2em; cursor: pointer; transition: 800ms ease all; outline: none; }
 
@@ -21,42 +17,42 @@ button.simple:after { right: inherit; top: inherit; left: 0; bottom: 0; }
 
 button.simple:hover:before, button.simple:hover:after { width: 100%; transition: 800ms ease all; }
 
-nav { font-family: "Avenir Next", "Avenir", sans-serif; }
-nav a { text-decoration: none; color: #232323; transition: color 0.3s ease; }
-nav a:hover { color: tomato; }
-nav #menuToggle { display: block; position: fixed; top: 30px; left: 30px; z-index: 1; -webkit-user-select: none; user-select: none; }
-nav #menuToggle input { display: block; width: 40px; height: 32px; position: absolute; top: -7px; left: -5px; cursor: pointer; opacity: 0; z-index: 2; -webkit-touch-callout: none; }
-nav #menuToggle span { display: block; width: 33px; height: 4px; margin-bottom: 5px; position: relative; background: #232323; border-radius: 3px; z-index: 1; transform-origin: 4px 0px; transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; }
-nav #menuToggle span:first-child { transform-origin: 0% 0%; }
-nav #menuToggle span:nth-last-child(2) { transform-origin: 0% 100%; }
-nav #menuToggle input:checked ~ span { opacity: 1; transform: rotate(45deg) translate(-2px, -1px); background: #232323; }
-nav #menuToggle input:checked ~ span:nth-last-child(3) { opacity: 0; transform: rotate(0deg) scale(0.2, 0.2); }
-nav #menuToggle input:checked ~ span:nth-last-child(2) { transform: rotate(-45deg) translate(0, -1px); }
-nav #menu { position: absolute; height: 150vh; width: 300px; margin: -100px 0 0 -50px; padding: 50px; padding-top: 125px; background: rgba(200, 200, 200, 0.85); list-style-type: none; -webkit-font-smoothing: antialiased; transform-origin: 0% 0%; transform: translate(-100%, 0); transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); }
-nav #menu li { padding: 10px 0; font-size: 22px; }
-nav #menuToggle input:checked ~ ul { transform: none; }
+nav.dark-theme { font-family: "Avenir Next", "Avenir", sans-serif; background-color: #232323; height: 50px; box-shadow: 0 0 1px 9px #232323; }
+nav.dark-theme #menuToggle { display: block; position: fixed; top: 20px; left: 20px; z-index: 1; -webkit-user-select: none; user-select: none; }
+nav.dark-theme #menuToggle input { display: block; width: 40px; height: 32px; position: absolute; top: -7px; left: -5px; cursor: pointer; opacity: 0; z-index: 2; -webkit-touch-callout: none; }
+nav.dark-theme #menuToggle span { display: block; width: 33px; height: 4px; margin-bottom: 5px; position: relative; background: #dcdcdc; border-radius: 3px; z-index: 1; transform-origin: 4px 0px; transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; box-shadow: 0 0 1px 1px #232323; }
+nav.dark-theme #menuToggle span:first-child { transform-origin: 0% 0%; }
+nav.dark-theme #menuToggle span:nth-last-child(2) { transform-origin: 0% 100%; }
+nav.dark-theme #menuToggle input:checked ~ span { opacity: 1; transform: rotate(45deg) translate(-2px, -1px); background: #232323; box-shadow: none; }
+nav.dark-theme #menuToggle input:checked ~ span:nth-last-child(3) { opacity: 0; transform: rotate(0deg) scale(0.2, 0.2); }
+nav.dark-theme #menuToggle input:checked ~ span:nth-last-child(2) { transform: rotate(-45deg) translate(0, -1px); }
+nav.dark-theme #menuToggle input:checked ~ ul { transform: none; }
+nav.dark-theme #menu { position: absolute; height: 150vh; width: 300px; margin: -100px 0 0 -50px; padding: 50px; padding-top: 125px; background: rgba(200, 200, 200, 0.85); list-style-type: none; -webkit-font-smoothing: antialiased; transform-origin: 0% 0%; transform: translate(-100%, 0); transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); box-shadow: 0 0 1px 1px rgba(200, 200, 200, 0.85); }
+nav.dark-theme #menu li { padding: 10px 0; font-size: 22px; text-decoration: none; color: #232323; transition: color 0.3s ease; }
+nav.dark-theme #menu li:hover { color: tomato; }
+nav.dark-theme #nav-login { float: right; font-size: 20px; }
 
-* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.modal-overlay { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4); }
 
-body { margin: 0; padding: 0; background-color: #fbfbfb; color: #232323; font-family: "Avenir Next", "Avenir", sans-serif; }
+.modal { background-color: #f0f0f0; margin: 20vh auto 0; padding: 20px; border: 1px solid #888; width: 50%; max-width: 500px; min-width: 300px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; border-radius: 10px; }
+.modal .g-signin2 { margin: auto; width: fit-content; }
 
-#header { background-image: url("../img/header_img.jpg"); background-repeat: no-repeat; background-position: center bottom; background-size: cover; height: 50vh; }
+.modal-close { color: gray; float: right; font-size: 30px; font-weight: bold; width: 100%; text-align: right; }
+.modal-close:hover, .modal-close:focus { color: #000; text-decoration: none; cursor: pointer; }
 
-#google { float: right; }
-#google #login > div { margin: 20px; }
-#google #logout { display: none; }
+.modal-content { margin: 0 auto; padding: 10% 0; width: fit-content; }
 
-#manage { margin-left: 100px; float: left; display: none; }
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
 
-#title h1 { text-shadow: 0 0 10px #232323; -moz-text-shadow: 0 0 10px #232323; -webkit-text-shadow: 0 0 10px #232323; color: #dcdcdc; font-size: 6.6vh; text-align: center; margin: 0; padding-top: 20vh; }
+body { margin: 0; padding: 0; background-color: #dcdcdc; color: #232323; font-family: "Avenir Next", "Avenir", sans-serif; }
 
-.container { margin: auto; margin-top: 50px; width: 1080px; }
+.container { margin: 0 auto; width: 1080px; }
 
-#contents { min-height: 50vh; }
+#contents { min-height: 100vh; text-align: center; }
 
 #footer { background-color: #232323; color: #dcdcdc; text-align: right; }
 #footer p { margin: 0; padding: 10px; }
 
-@media only screen and (max-width: 1080px) { .container { width: 100%; } }
+@media only screen and (max-width: 1080px) { .container { width: 90%; } }
 
 /*# sourceMappingURL=style.css.map */

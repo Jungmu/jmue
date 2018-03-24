@@ -1,13 +1,10 @@
 package staticHandler
 
 import (
-	"bytes"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"path/filepath"
 	"strings"
-	"text/template"
 
 	"github.com/Jungmu/jmue/pkg/logger"
 )
@@ -15,18 +12,10 @@ import (
 //Handler : http.Handler wrapping
 type Handler struct {
 	http.Handler
-	Data interface{}
-}
-
-//New : constructor
-func New(data interface{}) *Handler {
-	h := Handler{}
-	h.Data = data
-	return &h
 }
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	logger.Debug("Get Request - URL : " + req.Host + req.URL.Path)
+	logger.Debug("Get Request - URL : " + req.Host + req.URL.Path + " - " + req.Method)
 	logger.Debug("Get Request - User Info : " + req.UserAgent())
 
 	localPath := route(req.URL.Path, w, req)
@@ -40,31 +29,7 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	contentType := getContentType(localPath)
 	w.Header().Add("Content-Type", contentType)
-
-	if contentType == "text/html" {
-		excuteTemplate(w, wrapLayout(content), h.Data)
-	} else {
-		w.Write(content)
-	}
-}
-
-func wrapLayout(content []byte) []byte {
-	layout, err := ioutil.ReadFile("wwwroot/layout.html")
-	if checkError(err) {
-		logger.Error("wrapLayoutFail not found layout.html")
-		os.Exit(1)
-	}
-
-	return bytes.Replace(layout, []byte("{*content*}"), content, 1)
-}
-
-func excuteTemplate(w http.ResponseWriter, content []byte, data interface{}) {
-	t := template.New("Person template")
-	t, err := t.Parse(string(content))
-	checkError(err)
-
-	err = t.Execute(w, data)
-	checkError(err)
+	w.Write(content)
 }
 
 func checkError(err error) bool {

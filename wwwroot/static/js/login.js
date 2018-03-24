@@ -11,13 +11,6 @@ function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
 
-    document.getElementById("login").style.display = "none";
-    document.getElementById("title").style.display = "none";
-
-    document.getElementById("logout").style.display = "block";
-    document.getElementById("manage").style.display = "block";
-    
-
     if(profile.getEmail() != "whdrjs0@gmail.com")
     {
         signOut();
@@ -31,9 +24,4 @@ function signOut() {
       console.log('User signed out.');
     });
 
-    document.getElementById("login").style.display = "block";
-    document.getElementById("title").style.display = "block";
-
-    document.getElementById("logout").style.display = "none";
-    document.getElementById("manage").style.display = "none";
   }
