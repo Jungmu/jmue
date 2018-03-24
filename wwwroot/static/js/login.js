@@ -1,3 +1,5 @@
+var tempButtonFunc;
+
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
@@ -15,13 +17,21 @@ function onSignIn(googleUser) {
     {
         signOut();
         alert("you are not admin");
+    } else {
+        var child = document.getElementById('nav-login').children[0];
+        child.innerHTML = "logout";
+        tempButtonFunc = child.onclick;
+        child.onclick = function() { signOut() };
     }
 };
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      console.log('User signed out.');
+        var child = document.getElementById('nav-login').children[0];
+        child.onclick = tempButtonFunc;
+        child.innerHTML = "admin";
+        console.log('User signed out.');
     });
 
   }
