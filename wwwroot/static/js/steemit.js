@@ -23,45 +23,43 @@ var steemit = new Vue({
 var lastAuthor;
 var lastPermlink;
 
+
+function getOnlyMyDevPostOne(element){
+    // category == dev but, no post for dev yet
+    if(element.author == "jungmu" && element.permlink != lastPermlink && element.category == "kr")
+    {                
+        let item = {title:"", content:""};
+        item.title = element.title;
+        item.content = converter.makeHtml(element.body);
+        steemit.addToPost(item);
+        lastAuthor=element.author;
+        lastPermlink = element.permlink;
+        document.getElementById("postLoader").style.display = "none";
+        return false;
+    }
+    return true;
+}
+
 steem.api.getDiscussionsByBlog({"tag": "jungmu", "limit": 5}, function(err, result) {
-    document.getElementById("postLoader").style.display = "block";
-    result.forEach(element => {
-        if(element.author == "jungmu")
-        {
-            let item = {title:"", content:""};
-            item.title = element.title;
-            item.content = converter.makeHtml(element.body);
-            steemit.addToPost(item);
-            lastAuthor=element.author;
-            lastPermlink = element.permlink;
-            document.getElementById("postLoader").style.display = "none";
-            return;
-        }
-    });
-    document.getElementById("postLoader").style.display = "none";
+    // if this true, no more post
+    if(result.every(getOnlyMyDevPostOne)) {
+        document.getElementById("postLoader").style.display = "none";
+    }
 });
+
 
 function getPostMore(){
     document.getElementById("postLoader").style.display = "block";
     steem.api.getDiscussionsByBlog({"tag": "jungmu", "limit": 5, "start_author": lastAuthor, "start_permlink": lastPermlink}, function(err, result) {
-        result.forEach(element => {
-            if(element.author == "jungmu" && element.permlink != lastPermlink && element.category == "dev")
-            {                
-                let item = {title:"", content:""};
-                item.title = element.title;
-                item.content = converter.makeHtml(element.body);
-                steemit.addToPost(item);
-                lastAuthor=element.author;
-                lastPermlink = element.permlink;
-                document.getElementById("postLoader").style.display = "none";
-                return;
-            }
-        });
-        document.getElementById("postLoader").style.display = "none";
+        // if this true, no more post
+        if(result.every(getOnlyMyDevPostOne)) {
+            document.getElementById("postLoader").style.display = "none";
+            alert("no more post");    
+        }
     });
 }
 
-window.onscroll = function(ev) {
+window.onscroll = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         getPostMore();
     }
