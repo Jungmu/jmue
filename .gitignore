@@ -25,3 +25,4 @@ credentials.json
 # cache
 .sass-cache/*
 /jmueConsole/.sass-cache
+/pw.jmue
