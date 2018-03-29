@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"net/http"
+	"net/smtp"
 	"os"
 	"time"
 
@@ -27,10 +30,34 @@ func main() {
 	defer fpLog.Close()
 	logger.InitLogger(fpLog, mode)
 
+	http.HandleFunc("/sendEmail", sendEmail)
+
 	http.Handle("/", new(staticHandler.Handler))
 	http.Handle("/static", http.FileServer(http.Dir("wwwroot/static")))
 
 	http.ListenAndServe(":80", nil)
+}
+
+func sendEmail(w http.ResponseWriter, req *http.Request) {
+	pw, fileReadErr := ioutil.ReadFile("pw.jmue")
+	if fileReadErr != nil {
+		panic(fileReadErr)
+	}
+	log.Println(pw)
+	auth := smtp.PlainAuth("", "whdrjs0@gmail.com", string(pw), "smtp.gmail.com")
+
+	from := "admin.jmue.com"
+	to := []string{"whdrjs0@gmail.com"}
+	msg := []byte("To: whdrjs0@gmail.com\r\n" +
+		"Subject: mail test!\r\n" +
+		"\r\n" +
+		"This is the email body.\r\n")
+	err := smtp.SendMail("smtp.gmail.com:587", auth, from, to, msg)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	http.Redirect(w, req, "http://jmue.xyz?send=ok", 301)
 }
 
 func checkMode() {

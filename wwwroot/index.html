@@ -18,15 +18,15 @@
 <body onload="onload()">
     <nav class="dark-theme" role="navigation">
         <div id="menuToggle">
-            <input type="checkbox" />
+            <input id="menuCheckBox" type="checkbox" />
             <span></span>
             <span></span>
             <span></span>
             <ul id="menu">
-                <li>Home</li>
-                <li>About</li>
+                <li onclick="route(indexPage)">Home</li>
+                <li onclick="route(steemit)">Blog</li>
                 <li>Info</li>
-                <li>Contact</li>
+                <li onclick="route(contactPage)">Contact</li>
             </ul>
         </div>
         <div id="nav-login">
@@ -34,16 +34,32 @@
         </div>
     </nav>
     <div id="contents" class="container">
+
         <div id="IE" v-if="show">
-            <h1><p>{{ message }}</p></h1>
+            <h1 class="section-title"><p>{{ title }}</p></h1>
         </div>
-        <div class="steemit-contents" id="steemit" >
+        <div id="index" v-if="show">
+            <h1 class="section-title"><p>{{ title }}</p></h1>
+        </div>
+
+        <div  id="steemit" class="steemit-contents" v-if="show">
+            <h1 class="section-title"><p>{{ title }}</p></h1>
             <div v-for="value in posts" >
-                <h1>{{ value.title }}</h1>
+                <h1 class="post-title">{{ value.title }}</h1>
                 <span v-html="value.content"></span>
             </div>
-        </div>       
+        </div>
+        
+        <div  id="contect" class="contact" v-if="show">
+            <h1 class="section-title"><p>{{ title }}</p></h1>
+            <form action="/sendEmail" method="post">
+                <textarea name="msg" id="email-msg" cols="30" rows="10"></textarea>
+                <button type="submit">Send Email</button>
+            </form>
+        </div>
+
     </div>
+
     <div id="login-modal" class="modal-overlay">
         <div class="modal">
             <span class="modal-close" onclick="closeLoginModal()">&times;</span>
@@ -53,6 +69,16 @@
             </div>
         </div>
     </div>
+
+    <div id="alert" class="modal-overlay">
+        <div class="modal">
+            <span class="modal-close" onclick="closeAlert()">&times;</span>
+            <div class="modal-content">
+                <h1 id="alert-text"></h1>                 
+            </div>
+        </div>
+    </div>
+    
     <div id="postLoader" class="loader-overlay">
         <div class="loader"></div>
     </div>    
@@ -62,10 +88,15 @@
         </div>
     </div>
 </body>
+<!-- 의존성이 없는 다른데서 가져온 js -->
 <script src="static/js/showdown.min.js"></script>
+<!-- 의존성이 없는 내가 만든 js-->
+<script src="static/js/modal.js"></script>
+<script src="static/js/vueManager.js"></script>
+<!-- 의존성이 있는 js -->
 <script src="static/js/steemit.js"></script>
 <script src="static/js/login.js"></script>
-<script src="static/js/modal.js"></script>
+<!-- 메인이 되는 js. 맨 아래 둘 것. -->
 <script src="static/js/app.js"></script>
 
 </html>

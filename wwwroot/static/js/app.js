@@ -2,14 +2,7 @@ var IE_warning = new Vue({
     el: '#IE',
     data: {
         show: false,
-        message: 'Internet Explorer is not support! please use other browser.'
-    }
-})
-
-new Vue({
-    el: '#index',
-    data: {
-        message: 'Hello Vue.js!'
+        title: 'Internet Explorer is not support! please use other browser.'
     }
 })
 
@@ -18,9 +11,16 @@ function detectIE(){
 
     if( agent.indexOf('msie') != -1 || agent.indexOf('trident') != -1 ) {
         IE_warning.show = true;
+        return ture;
     }
 }
 
+
+
 function onload() {
-    detectIE();
+    if(detectIE()) {
+        // only show warning text,
+        return;
+    }
+    route(indexPage);
 }

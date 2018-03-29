@@ -15,8 +15,8 @@ type Handler struct {
 }
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	logger.Debug("Get Request - URL : " + req.Host + req.URL.Path + " - " + req.Method)
-	logger.Debug("Get Request - User Info : " + req.UserAgent())
+	logger.Test("Get Request - URL : " + req.Host + req.URL.Path + " - " + req.Method)
+	logger.Test("Get Request - User Info : " + req.UserAgent())
 
 	localPath := route(req.URL.Path, w, req)
 

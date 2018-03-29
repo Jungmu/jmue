@@ -1,4 +1,10 @@
 .steemit-contents {
+    white-space: pre-wrap;
+    word-break:break-all;
+    .post-title {
+       margin-top: 10vh;   
+       word-break: keep-all;
+    }
     line-height: 1.5;
     ul,ol {
         list-style: none;
@@ -8,6 +14,5 @@
     width: 100%;
     height: auto;
     padding: 10px;
-    margin: 10px;
     }
 }
