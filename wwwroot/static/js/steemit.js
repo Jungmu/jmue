@@ -1,11 +1,11 @@
-var converter = new showdown.Converter({
+let converter = new showdown.Converter({
     'tables':true,
     'strikethrough':true,
     'simpleLineBreaks':true,
     "simplifiedAutoLink":true
 });
 
-var steemit = new Vue({
+let steemit = new Vue({
     el: '#steemit',
     data: {
         show: false,
@@ -29,8 +29,8 @@ var steemit = new Vue({
     }
 });
 
-var lastAuthor;
-var lastPermlink;
+let lastAuthor;
+let lastPermlink;
 
 function showSteemit(){
     steemit.show = true;
@@ -58,7 +58,7 @@ function getOnlyMyDevPostOne(element){
 
 function showBlog(){    
     document.getElementById("postLoader").style.display = "block";
-    steem.api.getDiscussionsByBlog({"tag": "jungmu", "limit": 5}, function(err, result) {
+    steem.api.getDiscussionsByBlog({"tag": "jungmu", "limit": 5}, (err, result) => {
         // if this true, no more post
         if(result.every(getOnlyMyDevPostOne)) {
             document.getElementById("postLoader").style.display = "none";
@@ -77,7 +77,7 @@ function getPostMore(){
     });
 }
 
-window.onscroll = function() {
+window.onscroll = () => {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         if(steemit.show == true){
             getPostMore();            

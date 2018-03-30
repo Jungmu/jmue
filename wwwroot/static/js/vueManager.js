@@ -11,18 +11,18 @@ function hideAllVueObject() {
     steemit.show =false;
 }
 
-var indexPage = new Vue({
+let indexPage = new Vue({
     el: '#index',
     data: {
         show: false,
         isInit : false,
-        title: 'Hello Vue.js!'
+        title: "Jongsun's Home Page"
     },
     methods: {
         init() {
             if(!this.isInit) {
-                var url = new URL(window.location.href);
-                var send = url.searchParams.get("send");
+                let url = new URL(window.location.href);
+                let send = url.searchParams.get("send");
                 if(send == "ok") {
                     openAlert("thank for send email");
                 }
@@ -32,7 +32,7 @@ var indexPage = new Vue({
     }
 });
 
-var contactPage = new Vue({
+let contactPage = new Vue({
     el: '#contect',
     data: {
         show: false,

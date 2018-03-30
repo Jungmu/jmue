@@ -25,7 +25,6 @@
             <ul id="menu">
                 <li onclick="route(indexPage)">Home</li>
                 <li onclick="route(steemit)">Blog</li>
-                <li>Info</li>
                 <li onclick="route(contactPage)">Contact</li>
             </ul>
         </div>
@@ -38,8 +37,29 @@
         <div id="IE" v-if="show">
             <h1 class="section-title"><p>{{ title }}</p></h1>
         </div>
+
         <div id="index" v-if="show">
             <h1 class="section-title"><p>{{ title }}</p></h1>
+            <div id="index-box">
+                <div id="index-contents">
+                    <ul>
+                        <li id="index-blog" onclick="route(steemit)">
+                            <div id="index-blog-text">
+                                <h1>Wellcome!</h1>
+                                <h2>if you want see my blog, click me!</h2>
+                            </div>
+                            <img src="static/img/BlogCharacter.png" alt="Blog">
+                        </li>
+                        <li id="index-contact" onclick="route(contactPage)">
+                            <div id="index-contact-text">
+                                <h1>Contact Me</h1>
+                                <h2>Send Email</h2>
+                            </div>    
+                            <img src="static/img/PaperPlane.png" alt="Contact">
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div  id="steemit" class="steemit-contents" v-if="show">

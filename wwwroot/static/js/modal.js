@@ -1,4 +1,4 @@
-var loginModal = document.getElementById("login-modal");
+let loginModal = document.getElementById("login-modal");
 
 function openLoginModal() {
     loginModal.style.display = "block";
@@ -8,7 +8,7 @@ function closeLoginModal() {
     loginModal.style.display = "none";
 }
 
-var alertModal = document.getElementById("alert");
+let alertModal = document.getElementById("alert");
 
 function openAlert(text) {
     alertModal.style.display = "block";
@@ -19,7 +19,7 @@ function closeAlert() {
     alertModal.style.display = "none";
 }
 
-window.onclick = function(event) {
+window.onclick = (event) => {
     if(event.target == loginModal) {
         loginModal.style.display = "none";
         
