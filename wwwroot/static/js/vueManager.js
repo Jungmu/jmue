@@ -25,6 +25,8 @@ let indexPage = new Vue({
                 let send = url.searchParams.get("send");
                 if(send == "ok") {
                     openAlert("thank for send email");
+                } else if (send == "fail") {
+                    openAlert("mail send fail, email not vaild");
                 }
                 this.isInit = true;
             }

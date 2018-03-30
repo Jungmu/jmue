@@ -20,7 +20,7 @@ var (
 type emailStruct struct {
 	to      []string
 	from    string
-	Subject string
+	subject string
 	msg     string
 }
 
@@ -49,16 +49,23 @@ func sendEmail(w http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 
 	var mailContents emailStruct
-	mailContents.to = []string{"whdrjs0@gmail.com"}
-	mailContents.from = req.FormValue("from")
-	mailContents.Subject = req.FormValue("Subject")
-	mailContents.msg = req.FormValue("msg")
+	parseMailContemts(&mailContents, w, req)
 
 	pw := readAllfileText("pw.jmue")
 
 	sendToStmp(pw, mailContents)
 
-	http.Redirect(w, req, "http://jmue.xyz?send=ok", 301)
+}
+
+func parseMailContemts(mailContents *emailStruct, w http.ResponseWriter, req *http.Request) {
+	mailContents.to = []string{"whdrjs0@gmail.com"}
+	mailContents.from = req.FormValue("from")
+	mailContents.subject = req.FormValue("subject")
+	mailContents.msg = req.FormValue("msg")
+
+	if mailContents.from == "" {
+		http.Redirect(w, req, "http://jmue.xyz?send=fail", 301)
+	}
 }
 
 func readAllfileText(fileName string) string {
@@ -74,7 +81,7 @@ func sendToStmp(pw string, mailContents emailStruct) {
 	auth := smtp.PlainAuth("", mailContents.to[0], pw, "smtp.gmail.com")
 
 	msg := []byte("To: " + mailContents.to[0] + "\r\n" +
-		"Subject: " + mailContents.Subject + "\r\n" +
+		"Subject: " + mailContents.subject + "\r\n" +
 		"\r\n" +
 		"From: " + mailContents.from + "\r\n" +
 		mailContents.msg + "\r\n")

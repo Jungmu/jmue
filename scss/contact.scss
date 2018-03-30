@@ -4,7 +4,7 @@
         width: 80%;
         position: relative;
         margin: 0 auto;
-
+        display: block;
         label {
             position: absolute;
             top: 2em;
@@ -31,7 +31,14 @@
                 font-size: 1.5em;
                 color: rgba(#232323, .5);
                 }
-            }
+            }       
+            &:invalid{
+                ~label {
+                top: 0;
+                font-size: 1.5em;
+                color: rgba(#ff0000, .5);
+                }
+            }     
             &:focus {
                 outline: none;
                 ~label {
@@ -43,6 +50,7 @@
                 ~ .bar:before {
                 transform: translateX(-50%);
                 }
+                
             }
 
             // Stop Chrome's hideous pale yellow background on auto-fill
@@ -110,6 +118,7 @@
     }
 
     button {
+        margin-top: 2em;
         font-size: 2em;
     }
 

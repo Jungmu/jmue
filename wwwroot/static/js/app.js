@@ -15,8 +15,6 @@ function detectIE(){
     }
 }
 
-
-
 function onload() {
     if(detectIE()) {
         // only show warning text,
@@ -24,3 +22,9 @@ function onload() {
     }
     route(indexPage);
 }
+
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        document.location.reload();
+    }
+};

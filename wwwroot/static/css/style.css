@@ -79,10 +79,11 @@ pre > code { text-align: left; line-height: 1.5; white-space: pre-wrap; word-bre
   #index-box #index-contents ul li#index-blog img { transition: all 0.5s cubic-bezier(1, 1.03, 0.34, 2.12); transform: translate(-50%, 10%); }
   #index-box h2 { display: none; } }
 @media only screen and (max-width: 640px) { #index-box #index-contents ul li#index-contact h1 { margin: 0; padding: 0; margin-top: -10px; font-size: 5vw; } }
-#contact .group { width: 80%; position: relative; margin: 0 auto; }
+#contact .group { width: 80%; position: relative; margin: 0 auto; display: block; }
 #contact .group label { position: absolute; top: 2em; left: 0; color: rgba(35, 35, 35, 0.5); font-size: 2em; cursor: text; transition: .25s ease; }
 #contact .group input { display: block; width: 100%; padding-top: 2em; border: none; border-radius: 0; color: #232323; background: #dbdbdb; font-size: 2em; transition: .3s ease; }
 #contact .group input:valid ~ label { top: 0; font-size: 1.5em; color: rgba(35, 35, 35, 0.5); }
+#contact .group input:invalid ~ label { top: 0; font-size: 1.5em; color: rgba(255, 0, 0, 0.5); }
 #contact .group input:focus { outline: none; }
 #contact .group input:focus ~ label { top: 1em; font-size: 1.5em; color: #2196f3; }
 #contact .group input:focus ~ .bar:before { transform: translateX(-50%); }
@@ -95,7 +96,7 @@ pre > code { text-align: left; line-height: 1.5; white-space: pre-wrap; word-bre
 #contact .group-textarea textarea:focus ~ .bar:before { transform: translateX(-50%); }
 #contact .bar { background: rgba(35, 35, 35, 0.5); content: ''; width: 100%; height: 5px; transition: .3s ease; position: relative; }
 #contact .bar:before { content: ''; position: absolute; width: 100%; height: 6px; background: #2196f3; transform: translateX(-250%); }
-#contact button { font-size: 2em; }
+#contact button { margin-top: 2em; font-size: 2em; }
 #contact ::selection { background: rgba(33, 150, 243, 0.3); }
 
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
@@ -104,7 +105,7 @@ body { margin: 0; padding: 0; background-color: #dcdcdc; color: #232323; font-fa
 
 .container { margin: 0 auto; width: 1080px; }
 
-#contents { min-height: 100vh; text-align: center; }
+#contents { min-height: 1080px; text-align: center; }
 
 #footer { background-color: #232323; color: #dcdcdc; text-align: right; }
 #footer p { margin: 0; padding: 10px; }
