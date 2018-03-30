@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/smtp"
 	"os"
@@ -18,6 +17,13 @@ var (
 	mode jmueConst.Mode
 )
 
+type emailStruct struct {
+	to      []string
+	from    string
+	Subject string
+	msg     string
+}
+
 func main() {
 	checkMode()
 
@@ -25,6 +31,7 @@ func main() {
 	logFilePath := fmt.Sprintf("wwwroot/log/%d-%02d-%02d.log", now.Year(), now.Month(), now.Day())
 	fpLog, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
+		logger.Error("log file open fail")
 		panic(err)
 	}
 	defer fpLog.Close()
@@ -39,25 +46,42 @@ func main() {
 }
 
 func sendEmail(w http.ResponseWriter, req *http.Request) {
-	pw, fileReadErr := ioutil.ReadFile("pw.jmue")
-	if fileReadErr != nil {
-		panic(fileReadErr)
-	}
-	log.Println(pw)
-	auth := smtp.PlainAuth("", "whdrjs0@gmail.com", string(pw), "smtp.gmail.com")
+	req.ParseForm()
 
-	from := "admin.jmue.com"
-	to := []string{"whdrjs0@gmail.com"}
-	msg := []byte("To: whdrjs0@gmail.com\r\n" +
-		"Subject: mail test!\r\n" +
-		"\r\n" +
-		"This is the email body.\r\n")
-	err := smtp.SendMail("smtp.gmail.com:587", auth, from, to, msg)
-	if err != nil {
-		log.Fatal(err)
-	}
+	var mailContents emailStruct
+	mailContents.to = []string{"whdrjs0@gmail.com"}
+	mailContents.from = req.FormValue("from")
+	mailContents.Subject = req.FormValue("Subject")
+	mailContents.msg = req.FormValue("msg")
+
+	pw := readAllfileText("pw.jmue")
+
+	sendToStmp(pw, mailContents)
 
 	http.Redirect(w, req, "http://jmue.xyz?send=ok", 301)
+}
+
+func readAllfileText(fileName string) string {
+	pw, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		logger.Error("file read fail" + err.Error())
+		return ""
+	}
+	return string(pw)
+}
+
+func sendToStmp(pw string, mailContents emailStruct) {
+	auth := smtp.PlainAuth("", mailContents.to[0], pw, "smtp.gmail.com")
+
+	msg := []byte("To: " + mailContents.to[0] + "\r\n" +
+		"Subject: " + mailContents.Subject + "\r\n" +
+		"\r\n" +
+		"From: " + mailContents.from + "\r\n" +
+		mailContents.msg + "\r\n")
+	err := smtp.SendMail("smtp.gmail.com:587", auth, mailContents.from, mailContents.to, msg)
+	if err != nil {
+		logger.Error("send email fail" + err.Error())
+	}
 }
 
 func checkMode() {

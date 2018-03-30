@@ -33,11 +33,11 @@ let indexPage = new Vue({
 });
 
 let contactPage = new Vue({
-    el: '#contect',
+    el: '#contact',
     data: {
         show: false,
         isInit : false,
-        title: 'Send Email!'
+        title: 'Try Contact Me!'
     },
     methods: {
         init() {

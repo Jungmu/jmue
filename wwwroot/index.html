@@ -70,11 +70,25 @@
             </div>
         </div>
         
-        <div  id="contect" class="contact" v-if="show">
+        <div  id="contact" class="contact" v-if="show">
             <h1 class="section-title"><p>{{ title }}</p></h1>
             <form action="/sendEmail" method="post">
-                <textarea name="msg" id="email-msg" cols="30" rows="10"></textarea>
-                <button type="submit">Send Email</button>
+                <div class="group">
+                    <input type="text" name="Subject" id="email-Subject" required="required" autocomplete="off">
+                    <label for="email-Subject">Subject</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="group">
+                    <input type="text" name="from" id="email-from" required="required" autocomplete="off">
+                    <label for="email-from">email</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="group group-textarea">
+                    <textarea name="msg" id="email-msg" required="required" autocomplete="off"></textarea>
+                    <label for="email-msg">massage</label>
+                    <div class="bar"></div>
+                    <button type="submit" class="snip">Send Email</button>
+                </div>
             </form>
         </div>
 
