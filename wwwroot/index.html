@@ -72,20 +72,22 @@
         
         <div  id="contact" class="contact" v-if="show">
             <h1 class="section-title"><p>{{ title }}</p></h1>
-            <form action="/sendEmail" method="post">
+            <form action="/sendEmail" method="post" autocomplete="off">
+                <input type="email" style="display:none" />
+                <input type="text" style="display:none" />
                 <div class="group">
-                    <input type="text" name="Subject" id="email-Subject" required="required" autocomplete="off">
+                    <input type="text" name="Subject" id="email-Subject" required="required">
                     <label for="email-Subject">Subject</label>
                     <div class="bar"></div>
                 </div>
                 <div class="group">
-                    <input type="text" name="from" id="email-from" required="required" autocomplete="off">
-                    <label for="email-from">email</label>
+                    <input type="email" name="from" id="email-from" required="required">
+                    <label for="email-from">Email</label>
                     <div class="bar"></div>
                 </div>
                 <div class="group group-textarea">
-                    <textarea name="msg" id="email-msg" required="required" autocomplete="off"></textarea>
-                    <label for="email-msg">massage</label>
+                    <textarea name="msg" id="email-msg" required="required"></textarea>
+                    <label for="email-msg">Massage</label>
                     <div class="bar"></div>
                     <button type="submit" class="snip">Send Email</button>
                 </div>
